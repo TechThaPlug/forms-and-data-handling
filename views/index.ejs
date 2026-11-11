@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <a href="/create">Create a user</a>
+    <a href="/search">Search users</a>
+
+    <ul>
+      <% if (locals.users) { %>
+        <% users.forEach(function(user) { %>
+          <li>
+            <strong>
+              <%= user.firstName %> <%= user.lastName %>
+            </strong>
+
+            <p>Email: <%= user.email %></p>
+
+            <% if (user.age) { %>
+              <p>Age: <%= user.age %></p>
+            <% } %>
+
+            <% if (user.bio) { %>
+              <p>Bio: <%= user.bio %></p>
+            <% } %>
+
+            <a href="/<%= user.id %>/update">Update</a>
+
+            <form action="/<%= user.id %>/delete" method="POST" style="display: inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }); %>
+      <% } %>
+    </ul>
+  </body>
+</html>

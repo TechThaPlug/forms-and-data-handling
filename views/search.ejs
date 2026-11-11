@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <form action="/search" method="GET">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" value="<%= name %>" />
+
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" value="<%= email %>" />
+
+      <button type="submit">Search</button>
+    </form>
+
+    <a href="/">Back to home</a>
+
+    <h2>Results</h2>
+
+    <% if (users.length === 0) { %>
+      <p>No users found.</p>
+    <% } else { %>
+      <ul>
+        <% users.forEach(function(user) { %>
+          <li>
+            <strong><%= user.firstName %> <%= user.lastName %></strong>
+            <p>Email: <%= user.email %></p>
+
+            <% if (user.age) { %>
+              <p>Age: <%= user.age %></p>
+            <% } %>
+
+            <% if (user.bio) { %>
+              <p>Bio: <%= user.bio %></p>
+            <% } %>
+          </li>
+        <% }); %>
+      </ul>
+    <% } %>
+  </body>
+</html>
